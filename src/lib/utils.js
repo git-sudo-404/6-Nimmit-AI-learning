@@ -6,13 +6,15 @@ export const INITIAL_CARD_STATE = {
   colNumber: 0,
 };
 
-export const createCard = ({
-  cardNumber = 0,
-  isFlipped = true,
-  isSelect = false,
-  rowNumber = 5,
-  colNumber = 0,
-}) => {
+export const createCard = (
+  {
+    cardNumber = 0,
+    isFlipped = true,
+    isSelect = false,
+    rowNumber = 5,
+    colNumber = 0,
+  } = {}, // added = {} , so that when i call createCard() , i am expected to pass an empty object, but adding ={} creates a default {} ig.
+) => {
   return {
     cardNumber,
     isFlipped,

@@ -1,6 +1,7 @@
 import "./App.css";
-import RenderCard from "./components/RenderCard.jsx";
+import BackGround from "./components/BackGround.jsx";
 import { createCard } from "./lib/utils.js";
+import GameBoard from "./components/GameBoard.jsx";
 
 function App() {
   const cards = [];
@@ -11,9 +12,13 @@ function App() {
     cards.push(card);
   }
 
+  console.log("App : ", cards[0].cardNumber);
+
   return (
     <>
-      <RenderCard key={cards[0].cardNumber} card={cards[0]} />
+      <BackGround />
+      {/* <RenderCard key={cards[0].cardNumber} card={cards[0]} /> */}
+      <GameBoard />
     </>
   );
 }

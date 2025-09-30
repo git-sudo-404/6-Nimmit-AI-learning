@@ -2,14 +2,9 @@ import React from "react";
 
 const PlayerHand = () => {
   return (
-    <div
-      className="absolute top-[700px] left-[150px] right-[50px] bottom-[20px] 
-                 bg-black/10 backdrop-blur-sm 
-                 border border-black/20 rounded-2xl 
-                 shadow-lg z-10"
-    >
-      {/* Put your game content here */}
-    </div>
+    <>
+      <div className="ml-2.5 mt-0.5 h-19/20 w-69/70 backdrop-blur-sm flex justify-center items-center rounded-xl bg-black/10 border-black/20 border-2 shadow-lg shadow-black/30"></div>
+    </>
   );
 };
 

@@ -7,9 +7,11 @@ import { createCard } from "../lib/utils.js";
 const GameBoard = () => {
   let cards = [];
 
-  for (let i = 1; i <= 104; i++) {
+  for (let i = 1; i <= 30; i++) {
     let card = createCard();
     card.cardNumber = i;
+    card.rowNumber = i % 7;
+    card.colNumber = i % 7;
     cards.push(card);
   }
 
@@ -17,10 +19,10 @@ const GameBoard = () => {
     <>
       <div className="grid grid-rows-12 h-screen w-screen">
         <div className="row-span-2 ">
-          <EnemyHand />
+          <EnemyHand cards={cards} />
         </div>
         <div className="row-span-8 ">
-          <Arena />
+          <Arena cards={cards} />
         </div>
         <div className="row-span-2 ">
           <PlayerHand cards={cards} />

@@ -7,12 +7,10 @@ const PlayerHand = ({ cards }) => {
 
   return (
     <>
-      <div className=" grid grid-cols-12 gap-1 ml-2.5 mt-0.5 h-19/20 w-69/70 backdrop-blur-sm flex justify-center items-center rounded-xl bg-black/10 border-black/20 border-2 shadow-lg shadow-black/30">
+      <div className=" bg-black/01 p-1 px-1.5 grid grid-cols-12 gap-1 ml-2.5 mt-0.5 h-19/20 w-69/70 backdrop-blur-sm  justify-center items-center rounded-xl  border-black/20 border-2 shadow-lg shadow-black/30 ">
         <div className="col-span-2 grid grid-cols-2 w-full h-full gap-2">
           <div className="col-span-1 border border-dashed border-white w-full h-full rounded-xl"></div>
-          <div className="col-span-1   w-full h-full rounded-xl text-center  border border-blue-700 border-dashed">
-            SELECT / WAIT
-          </div>
+          <div className="col-span-1   w-full h-full rounded-xl text-center  border-blue-700 border-dashed"></div>
         </div>
         <div className="col-span-10 grid grid-cols-10 gap-1 w-full h-full">
           {emptyCardHolder.map((card) => (

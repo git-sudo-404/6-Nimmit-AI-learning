@@ -1,19 +1,25 @@
 import React from "react";
-import Row from "./Row";
 import DrawPile from "./DrawPile";
 import Rows from "./Rows";
+import AlgoSelector from "./AlgoSelector";
 
-const Arena = ({ cards }) => {
-  const rows = [1, 2, 3, 4];
-
+const Arena = ({ cards, setCards, gameStats, setGameStats }) => {
   return (
     <>
-      <div className="ml-2.5 mt-3.5 grid grid-cols-8 h-29/30 w-69/70 rounded-xl  shadow-black/01 ">
-        <div className="col-span-2  bg-black/02 rounded-l-xl shadow-black/30 flex items-center justify-center">
-          <DrawPile cards={cards} />
+      <div className="col-span-12  grid grid-cols-11 h-full w-full rounded-xl  shadow-black gap-4 px-12 pb-2 mt-2.5 ">
+        <div className="col-span-3  bg-black/02 rounded-l-xl shadow-black/30 flex items-center justify-center">
+          <DrawPile
+            cards={cards}
+            setCards={setCards}
+            gameStats={gameStats}
+            setGameStats={setGameStats}
+          />
         </div>
         <div className="col-span-6 bg-black/01  rounded-r-xl shadow-black/10 flex flex-col justify-evenly ">
           <Rows cards={cards} />
+        </div>
+        <div className="col-span-2 w-full h-full shadow-black/30 shadow-lg   backdrop-blur-xl bg-black/10 rounded-3xl">
+          <AlgoSelector />
         </div>
       </div>
     </>

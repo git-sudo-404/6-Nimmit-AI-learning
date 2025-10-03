@@ -2,12 +2,8 @@ import React from "react";
 import Card from "./Card";
 import ScoreCard from "./ScoreCard";
 
-const DrawPile = ({ cards }) => {
+const DrawPile = ({ cards, setCards, gameStats, setGameStats }) => {
   let leftOverCards = cards.filter((card) => card.rowNumber === 6);
-
-  console.log(cards);
-
-  console.log(leftOverCards);
 
   return (
     <>

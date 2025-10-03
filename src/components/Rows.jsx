@@ -6,7 +6,7 @@ const Rows = ({ cards }) => {
 
   return (
     <>
-      <div className=" grid grid-rows-4 w-69/70 h-full m-auto rounded-xl gap-1 bg-black/01  ">
+      <div className=" grid grid-rows-4 w-full h-full m-auto rounded-xl gap-1 bg-black/01  ">
         {rows.map((row) => (
           <Row key={row} row={row} cards={cards} />
         ))}

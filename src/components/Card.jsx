@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 
 const Card = ({ card }) => {
   if (card.cardNumber === undefined) {
@@ -14,8 +16,29 @@ const Card = ({ card }) => {
     }
   };
 
+  const Draggable = card.rowNumber === 5; // 1 if in playerHande , 0 if in AI/EnemyHand .
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: `${card.cardNumber}`,
+    disabled: !Draggable,
+  });
+
+  const style = transform
+    ? {
+      transform: CSS.Translate.toString(transform),
+      zIndex: 100, // Make sure the dragged card is on top
+    }
+    : undefined; // No transform when not dragging
+
   return (
-    <div className="w-full h-full " onMouseEnter={playsound}>
+    <div
+      className="w-full h-full "
+      onMouseEnter={playsound}
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      style={style}
+    >
       <audio ref={audioRef} prefoad="auto" className="hidden" id="CardHove">
         <source src="/sound/thud.ogg" type="audio/ogg" />
       </audio>

@@ -4,6 +4,7 @@ import Rows from "./Rows";
 import AlgoSelector from "./AlgoSelector";
 
 const Arena = ({ cards, setCards, gameStats, setGameStats }) => {
+  console.log("hi arena");
   return (
     <>
       <div className="col-span-12  grid grid-cols-11 h-full w-full rounded-xl  shadow-black gap-4 px-12 pb-2 mt-2.5 ">

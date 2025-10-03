@@ -38,3 +38,8 @@
 
 - Step - 10 : The Game is played for Several Rounds.
 - Step - 11 : At the end of all the rounds whichever player has the lowest bullheads wins the game.
+
+#### Future Features :
+
+- Add multiplayer Support.
+- Add AI Arena where different Algorithms compete against one another.

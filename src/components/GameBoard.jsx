@@ -3,7 +3,7 @@ import PlayerHand from "./PlayerHand";
 import EnemyHand from "./EnemyHand";
 import Arena from "./Arena";
 import { createCard, distributeCards } from "../lib/utils.js";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GameStartBox from "./GameStartBox.jsx";
 
 const GameBoard = () => {
@@ -24,9 +24,37 @@ const GameBoard = () => {
     distributeCards(cards, setCards);
   }, []);
 
+  const bgmAudioRef = useRef(null);
+
+  const handleTestAudio = () => {
+    if (bgmAudioRef.current) {
+      bgmAudioRef.current.currentTime = 0;
+      bgmAudioRef.current.play();
+    }
+    console.log("Audio Test Played");
+  };
+
+  const handleStartGame = () => {
+    if (bgmAudioRef.current) {
+      bgmAudioRef.current.currentTime = 0;
+      bgmAudioRef.current.play();
+    }
+    setGameStats((prevGameStats) => ({
+      ...prevGameStats,
+      hasStarted: true,
+    }));
+  };
+
   return (
     <>
-      {!gameStats.hasStarted ? <GameStartBox /> : {}}
+      <audio ref={bgmAudioRef} src="/sound/music1.ogg" preload="auto" />
+      {!gameStats.hasStarted ? (
+        <GameStartBox
+          handleTestAudio={handleTestAudio}
+          handleStartGame={handleStartGame}
+        />
+      ) : null}
+
       <div className="grid grid-rows-12 h-screen w-screen">
         <div className="row-span-2 z-100 ">
           <EnemyHand

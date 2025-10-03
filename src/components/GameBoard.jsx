@@ -4,6 +4,7 @@ import EnemyHand from "./EnemyHand";
 import Arena from "./Arena";
 import { createCard, distributeCards } from "../lib/utils.js";
 import { useState } from "react";
+import GameStartBox from "./GameStartBox.jsx";
 
 const GameBoard = () => {
   const [cards, setCards] = useState([]);
@@ -25,6 +26,7 @@ const GameBoard = () => {
 
   return (
     <>
+      {!gameStats.hasStarted ? <GameStartBox /> : {}}
       <div className="grid grid-rows-12 h-screen w-screen">
         <div className="row-span-2 z-100 ">
           <EnemyHand

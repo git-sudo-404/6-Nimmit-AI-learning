@@ -5,6 +5,7 @@ import Arena from "./Arena";
 import { createCard, distributeCards } from "../lib/utils.js";
 import { useState, useRef } from "react";
 import GameStartBox from "./GameStartBox.jsx";
+import { DndContext, DragOverlay } from "@dnd-kit/core";
 
 const GameBoard = () => {
   const [cards, setCards] = useState([]);
@@ -19,6 +20,8 @@ const GameBoard = () => {
     AIwon: false,
     AIAlgo: 0, // by default = 0 --> ExpectiMiniMax Algo , 1 --> Monte Carlo Tree Search , 3 --> Reinforcement Learning, 4 --> NN(function approximation)
   });
+
+  const [activeId, setActiveId] = useState(null);
 
   useEffect(() => {
     distributeCards(cards, setCards);
@@ -45,6 +48,27 @@ const GameBoard = () => {
     }));
   };
 
+  const handleDragStart = (event) => {
+    setActiveId(event.active.id);
+  };
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over) return;
+
+    for (let row = 1; row <= 4; row++) {
+      if (over.id === `drop-row-${row}`) {
+        setCards((prev) =>
+          prev.map((card) =>
+            card.cardNumber === Number(active.id) // convert string -> number
+              ? { ...card, rowNumber: row }
+              : card,
+          ),
+        );
+      }
+    }
+  };
+
   return (
     <>
       <audio ref={bgmAudioRef} src="/sound/music1.ogg" preload="auto" />
@@ -53,34 +77,37 @@ const GameBoard = () => {
           handleTestAudio={handleTestAudio}
           handleStartGame={handleStartGame}
         />
-      ) : null}
-
-      <div className="grid grid-rows-12 h-screen w-screen">
-        <div className="row-span-2 z-100 ">
-          <EnemyHand
-            cards={cards}
-            setCards={setCards}
-            gameStats={gameStats}
-            setGameStats={setGameStats}
-          />
-        </div>
-        <div className="row-span-8">
-          <Arena
-            cards={cards}
-            setCards={setCards}
-            gameStats={gameStats}
-            setGameStats={setGameStats}
-          />
-        </div>
-        <div className="row-span-2 ">
-          <PlayerHand
-            cards={cards}
-            setCards={setCards}
-            gameStats={gameStats}
-            setGameStats={setGameStats}
-          />
-        </div>
-      </div>
+      ) : (
+        <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+          <DragOverlay></DragOverlay>
+          <div className="grid grid-rows-12 h-screen w-screen">
+            <div className="row-span-2 z-100 ">
+              <EnemyHand
+                cards={cards}
+                setCards={setCards}
+                gameStats={gameStats}
+                setGameStats={setGameStats}
+              />
+            </div>
+            <div className="row-span-8">
+              <Arena
+                cards={cards}
+                setCards={setCards}
+                gameStats={gameStats}
+                setGameStats={setGameStats}
+              />
+            </div>
+            <div className="row-span-2 ">
+              <PlayerHand
+                cards={cards}
+                setCards={setCards}
+                gameStats={gameStats}
+                setGameStats={setGameStats}
+              />
+            </div>
+          </div>
+        </DndContext>
+      )}
     </>
   );
 };

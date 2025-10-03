@@ -16,10 +16,7 @@ const PlayerHand = ({ cards, setCards, gameStats, setGameStats }) => {
         <div className="  span-col-1 w-full h-full border border-dashed border-white rounded-2xl hover:animate-pulse">
           BullHead Stack
         </div>
-        <div className="hover:animate-bounce col-span-1 w-full h-full rounded-2xl bg-green-500 border border-dashed border-white text-2xl font-mono flex justify-center items-center hover:bg-white/30 hover:border-green-500 hover:text-green-500 hover:text-4xl transition-all ">
-          {" "}
-          You
-        </div>
+        <div className="hover:animate-bounce col-span-1 w-full h-full rounded-2xl  text-2xl font-mono flex justify-center items-center hover:bg-white/30 hover:border-green-500 hover:text-green-500 hover:text-4xl transition-all "></div>
         <div className="col-span-10 w-full h-full grid grid-cols-10 gap-3">
           {emptyCardHolder.map((ind) =>
             playerCards[ind] ? (

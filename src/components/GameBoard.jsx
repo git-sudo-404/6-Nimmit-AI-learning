@@ -67,6 +67,18 @@ const GameBoard = () => {
         );
       }
     }
+
+    handleDropAudioRef(dropCardAudioRef);
+  };
+
+  const dropCardAudioRef = useRef(null);
+
+  const handleDropAudioRef = (event) => {
+    if (event.current) {
+      event.current.currentTime = 0;
+      event.current.play();
+      console.log("audio");
+    }
   };
 
   return (
@@ -79,6 +91,7 @@ const GameBoard = () => {
         />
       ) : (
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+          <audio src="/sound/slice1.ogg" ref={dropCardAudioRef} />
           <DragOverlay></DragOverlay>
           <div className="grid grid-rows-12 h-screen w-screen">
             <div className="row-span-2 z-100 ">

@@ -14,3 +14,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes fly-in {
+  from {
+    /* Start the card from a specific position off-screen, for a flying-in effect */
+    opacity: 0;
+    /* transform: translate(-50vw, -50vh) rotate(-360deg) scale(0.5); */
+    transform: translate(100vw) scale(0.5);
+  }
+  to {
+    /* End the card at its final position on the board */
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.animate-fly-in {
+  animation: fly-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}

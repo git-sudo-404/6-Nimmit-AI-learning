@@ -2,7 +2,7 @@ import React from "react";
 
 const GameStartBox = ({ handleTestAudio, handleStartGame }) => {
   return (
-    <div className="h-60 w-100 absolute top-90 left-140 backdrop-blur-2xl rounded-3xl z-[1000]">
+    <div className="h-60 w-100 absolute top-90 left-130 backdrop-blur-2xl rounded-3xl z-[1000]">
       <div className="border p-1 border-black border-dashed rounded-2xl w-full h-full bg-black/10 ">
         <div className=" border border-black border-dashed rounded-2xl w-full h-full bg-white/10 flex justify-center items-center">
           <div className="h-full w-full grid grid-row-2 gap-4 p-2">

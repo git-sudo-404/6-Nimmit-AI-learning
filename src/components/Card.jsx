@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -30,9 +30,26 @@ const Card = ({ card }) => {
     }
     : undefined; // No transform when not dragging
 
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // This effect runs whenever the card's position changes
+  useEffect(() => {
+    // Check if the card's position is a new position on the board
+    // and if it was just dropped
+    if (card.rowNumber >= 1 && card.rowNumber <= 4) {
+      setIsAnimating(true);
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 500); // Animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [card.rowNumber]); // Rerun this effect when the rowNumber changes
+
+  const className = `w-full h-full ${isAnimating ? "animate-fly-in" : ""}`;
+
   return (
     <div
-      className="w-full h-full "
+      className={className}
       onMouseEnter={playsound}
       ref={setNodeRef}
       {...listeners}

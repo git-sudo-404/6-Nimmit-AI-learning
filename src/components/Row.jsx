@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Card from "./Card.jsx";
 import { useDroppable } from "@dnd-kit/core";
 import RowCardHolder from "./RowCardHolder.jsx";
@@ -22,12 +22,27 @@ const Row = ({ row, cards }) => {
     transform: isOver ? "scale(1.10)" : "scale(1.04)",
   };
 
+  const cardOverAudioRef = useRef(null);
+
+  useEffect(() => {
+    if (isOver && cardOverAudioRef.current)
+      handleCardOverAudioRef(cardOverAudioRef);
+  }, [isOver]);
+
+  const handleCardOverAudioRef = (event) => {
+    if (event.current) {
+      event.current.currentTime = 0;
+      event.current.play();
+    }
+  };
+
   return (
     <div
       style={style}
       className=" bg-white/10  rounded-xl border border-white/01 backdrop-blur-xs shadow-lg w-full h-100/100 my-auto "
       ref={setNodeRef}
     >
+      <audio className="hidden" src="/sound/foil2.ogg" ref={cardOverAudioRef} />
       <div className="col-span-6 w-93/100 h-95/100 grid grid-cols-6 gap-8 p-2  ">
         {currentRowCards.map((card, idx) => (
           <Card key={card.cardNumber} card={card} />
